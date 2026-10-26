@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Between Two Poles · Read, Listen, Shadow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF8F4;--card:#fff;--ink:#3B3945;--soft:#7C7989;--rose:#D9958F;--rose-s:#F7E7E4;--sand:#E6CFA0;--sand-s:#F7EFDC;--sage:#8DB8AC;--sage-s:#E4EFEA;--lav:#9C94C6;--lav-s:#EEEAF5;--blue:#8FB2D2;--blue-s:#E5EDF5;--line:#EAE5EC;--ok:#5E8F7E;--bad:#B56A6C;--shadow:0 8px 24px rgba(80,70,100,.07);--r:24px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:17px;line-height:1.6;background:radial-gradient(1000px 480px at 92% -5%,#F6E9EE 0,transparent 60%),radial-gradient(800px 480px at -8% 12%,#E6EEF5 0,transparent 55%),var(--bg);background-attachment:fixed}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;margin:0;letter-spacing:-.01em}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+.hero{padding:46px 0 14px;display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:center}
+.eyebrow{display:inline-block;background:var(--lav);color:#fff;border-radius:99px;padding:5px 16px;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.hero h1{font-size:clamp(34px,6vw,56px);line-height:1.08;margin:16px 0 12px}
+.hero h1 em{font-style:italic;background:linear-gradient(90deg,#C98481,#C9A66B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--soft);margin:0}
+.hero svg{width:100%;height:auto;filter:drop-shadow(0 12px 22px rgba(120,100,160,.18))}
+.how{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px}
+.how span{background:#fff;border-radius:20px;padding:12px;font-weight:700;font-size:14px;text-align:center;box-shadow:var(--shadow)}
+.how i{display:block;font-style:normal;font-size:28px;filter:saturate(.55)}
+.care{background:var(--sand-s);border-radius:16px;padding:10px 16px;font-size:14px;color:#6f6247;margin:14px 0 0;grid-column:1/-1}
+nav.top{position:sticky;top:0;z-index:30;background:rgba(251,248,244,.92);backdrop-filter:blur(10px);border-bottom:2px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:6px;overflow-x:auto;padding-top:9px;padding-bottom:9px;white-space:nowrap}
+nav.top a{font-size:13px;font-weight:800;color:var(--soft);text-decoration:none;padding:6px 12px;border-radius:99px}
+nav.top a:hover{background:var(--lav-s);color:var(--lav)}
+.prog{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--soft);flex-shrink:0}
+.prog i{display:block;width:100px;height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.prog i b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--blue));transition:width .3s}
+section.part{margin:54px 0}
+.ptag{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--rose);text-transform:uppercase}
+section.part>h2{font-size:clamp(26px,4vw,36px);margin:4px 0 8px}
+.lead{color:var(--soft);margin:0 0 16px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 24px;margin:14px 0;border-top:6px solid var(--lav)}
+.note{background:var(--sand-s);border-radius:16px;padding:12px 16px;font-size:15px;margin:12px 0}
+/* reading */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--blue-s);border-radius:20px;padding:10px 14px;margin:0 0 14px}
+.btn{font:inherit;font-weight:800;font-size:14px;border:none;border-radius:99px;padding:8px 18px;cursor:pointer;background:linear-gradient(135deg,var(--lav),var(--blue));color:#fff}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:#fff;color:var(--soft);border:2px solid var(--line)}
+.btn.ghost:hover{border-color:var(--lav);color:var(--lav)}
+.btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.rec{background:var(--rose)}
+.btn.small{padding:6px 12px;font-size:13px}
+.spd{display:flex;gap:4px}
+.spd .btn{padding:5px 11px;font-size:12px}
+.text{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:22px 26px;font-size:19px;line-height:1.85}
+.text p{margin:0 0 14px}
+.text p:last-child{margin:0}
+.snt{cursor:pointer;border-radius:6px;padding:1px 0;transition:background .2s}
+.snt:hover{background:var(--lav-s)}
+.snt.now{background:var(--sand-s)}
+.vw{border-bottom:2px dotted var(--rose);cursor:help;color:#8a5a56}
+.gloss{min-height:62px;background:var(--rose-s);border-radius:16px;padding:10px 16px;margin-top:12px;font-size:15px}
+.gloss b{font-family:'Playfair Display',serif;font-size:18px}
+.hint{font-size:13px;color:var(--soft);margin:8px 2px 0}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.vcard{background:#fff;border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);border:2px solid transparent}
+.vcard h4{font-size:20px}
+.vcard .ru{color:var(--rose);font-weight:800;font-size:14px}
+.vcard p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.vcard i{color:var(--ink)}
+/* sounds */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.sc{border-radius:20px;padding:14px 16px;background:#fff;box-shadow:var(--shadow)}
+.sc:nth-child(1){background:var(--rose-s)}.sc:nth-child(2){background:var(--blue-s)}.sc:nth-child(3){background:var(--sage-s)}.sc:nth-child(4){background:var(--lav-s)}.sc:nth-child(5){background:var(--sand-s)}.sc:nth-child(6){background:var(--rose-s)}
+.sc .em{font-size:28px;filter:saturate(.55)}
+.sc h4{font-size:19px;margin:2px 0 4px}
+.sc p{margin:3px 0;font-size:14.5px}
+.chip{display:inline-block;background:#fff;border-radius:99px;padding:1px 10px;font-size:13.5px;font-weight:700;margin:2px 2px 0 0}
+/* shadowing */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 14px}
+.steps div{background:#fff;border-radius:16px;padding:10px 12px;font-size:14px;box-shadow:var(--shadow)}
+.steps b{display:block;font-family:'Playfair Display',serif;color:var(--lav);font-size:22px}
+.sh{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:16px 20px;margin:12px 0;border-left:6px solid var(--lav)}
+.sh.now{border-left-color:var(--rose);background:#fffdfa}
+.sh .n{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--soft)}
+.sh .t{font-size:18px;margin:2px 0 6px}
+.sh .say{background:var(--blue-s);border-radius:12px;padding:7px 12px;font-size:15px;margin:6px 0;color:#42566b;font-family:ui-monospace,Consolas,monospace;font-size:14px}
+.sh .say b{color:#a2503f}
+.sh .nt{font-size:14.5px;color:var(--soft);margin:6px 0}
+.sh .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.sh audio{height:34px;max-width:100%}
+.yours{display:none;align-items:center;gap:8px;flex-wrap:wrap}
+.yours.show{display:flex}
+.turn{display:none;font-weight:800;color:var(--rose)}
+.turn.show{display:inline}
+.msg{font-size:13px;color:var(--bad)}
+/* items */
+.item{background:#fff;border-radius:var(--r);padding:16px 20px;margin:12px 0;box-shadow:var(--shadow);border:3px solid transparent}
+.item.ok{border-color:var(--sage);background:#F6FBF9}
+.item.no{border-color:#E6C2C0}
+.itop{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.num{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:99px;background:var(--lav);color:#fff;font-weight:700;font-size:14px;font-family:'Playfair Display',serif}
+.type{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--soft);text-transform:uppercase}
+.mark{margin-left:auto;font-size:22px;font-weight:800}
+.q{font-size:18px;margin:4px 0 10px}
+.blank{display:inline-block;min-width:80px;border-bottom:3px dashed var(--rose);margin:0 3px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.opt{font:inherit;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.opt:hover{border-color:var(--lav)}
+.opt.sel{border-color:var(--lav);background:var(--lav-s)}
+.opt.right{border-color:var(--ok);background:var(--sage-s)}
+.opt.wrong{border-color:var(--bad);background:var(--rose-s)}
+.opt b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--sand);font-size:12px;margin-right:8px}
+input.gap,textarea.free{font:inherit;border:2px solid var(--line);border-radius:12px;padding:6px 10px;background:#fff;color:var(--ink)}
+input.gap{width:min(170px,100%);margin:2px 4px}
+input.gap:focus,textarea.free:focus{outline:none;border-color:var(--lav)}
+input.gap.right{border-color:var(--ok);background:var(--sage-s)}
+input.gap.wrong{border-color:var(--bad);background:var(--rose-s)}
+textarea.free{width:100%;min-height:96px;resize:vertical}
+.btns{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.fb{margin-top:10px;font-size:15px;border-radius:14px;padding:9px 14px;display:none}
+.fb.show{display:block}
+.fb.good{background:var(--sage-s);color:var(--ok)}.fb.bad{background:var(--rose-s);color:var(--bad)}.fb.ans{background:var(--sand-s);color:#7b6638}
+.self{display:flex;gap:6px;margin-left:auto}
+.self button{font:inherit;border:2px solid var(--line);background:#fff;border-radius:10px;width:40px;height:34px;cursor:pointer}
+.self button.on{border-color:var(--lav);background:var(--lav-s)}
+.checklist{margin:6px 0 0;padding-left:20px;color:var(--soft);font-size:15px}
+.kwc{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.kwc span{background:var(--lav-s);border-radius:99px;padding:3px 14px;font-weight:700;font-size:14.5px}
+.sub{font-family:'Playfair Display',serif;font-size:22px;margin:30px 0 4px}
+footer{text-align:center;color:var(--soft);font-size:13px;padding:36px 0 60px}
+@media(max-width:700px){body{font-size:16px}.hero{grid-template-columns:1fr}.hero svg{order:-1;max-width:300px;margin:0 auto}.how{grid-template-columns:repeat(2,1fr)}.text{padding:16px 18px;font-size:17.5px}}
+</style>
+</head>
+<body>
+<header class="wrap hero">
+  <div>
+    <span class="eyebrow">B2 text · American English · shadowing</span>
+    <h1>Between <em>Two Poles</em></h1>
+    <p>A short, interesting text about bipolar disorder. Read it, listen to American speech, repeat after the speaker, and make the language your own. Tasks are in English; explanations for sounds and answers are in Russian.</p>
+  </div>
+  <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5EDF5"/><stop offset="1" stop-color="#F7E7E4"/></linearGradient></defs>
+    <rect x="6" y="6" width="308" height="248" rx="36" fill="url(#g1)"/>
+    <circle cx="80" cy="70" r="30" fill="#E6CFA0" opacity=".9"/>
+    <path d="M70 100 q-6 -30 0 -50 M90 100 q6 -30 0 -50" stroke="#fff" stroke-width="0" fill="none"/>
+    <path d="M20 190 C70 100 110 100 160 150 S250 200 300 110" stroke="#9C94C6" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M20 150 C70 210 110 210 160 160 S250 90 300 170" stroke="#D9958F" stroke-width="6" fill="none" stroke-linecap="round" opacity=".85"/>
+    <circle cx="160" cy="155" r="9" fill="#fff" stroke="#8DB8AC" stroke-width="4"/>
+    <text x="40" y="236" font-family="Playfair Display,serif" font-size="15" fill="#7C7989">high</text><text x="230" y="236" font-family="Playfair Display,serif" font-size="15" fill="#7C7989">low</text>
+    <text x="236" y="52" font-size="26">🎧</text>
+  </svg>
+  <div class="how">
+    <span><i>📖</i>Read &amp; tap words</span>
+    <span><i>👂</i>Listen to each sentence</span>
+    <span><i>🎯</i>Shadow &amp; record</span>
+    <span><i>✏️</i>Practise &amp; use it</span>
+  </div>
+  <div class="care">Это образовательный текст, а не медицинский совет. Если тебе или близкому человеку тяжело, стоит обратиться к специалисту.</div>
+</header>
+
+<nav class="top"><div class="wrap">
+  <a href="#read">Text</a><a href="#vocab">Vocabulary</a><a href="#sounds">American sounds</a><a href="#shadow">Shadowing</a><a href="#practice">Practice</a><a href="#use">Use it</a>
+  <div class="prog"><span id="progTxt">0 / 0</span><i><b id="progBar"></b></i></div>
+</div></nav>
+
+<main class="wrap">
+<section class="part" id="read">
+  <div class="ptag">Step 1 · Read &amp; listen</div>
+  <h2>Between Two Poles</h2>
+  <p class="lead">Press play to hear the whole text. Tap a <span class="vw">dotted word</span> to see its meaning. Tap any sentence to hear only that sentence.</p>
+  <div class="bar">
+    <button class="btn" id="fullBtn">▶ Play full text</button>
+    <div class="spd" id="fullSpd"><button class="btn ghost small" data-r="0.8">0.8×</button><button class="btn small on" data-r="1">1×</button><button class="btn ghost small" data-r="1.15">1.15×</button></div>
+    <span class="hint" id="fullTime" style="margin:0"></span>
+  </div>
+  <div class="text" id="text"></div>
+  <div class="gloss" id="gloss"><span class="hint">Tap a dotted word to see its meaning.</span></div>
+</section>
+
+<section class="part" id="vocab">
+  <div class="ptag">Step 2 · Vocabulary</div>
+  <h2>19 useful words</h2>
+  <p class="lead">Tap a card to hear the word in its sentence from the text.</p>
+  <div class="vgrid" id="vgrid"></div>
+</section>
+
+<section class="part" id="sounds">
+  <div class="ptag">Step 3 · American sounds</div>
+  <h2>What to listen for</h2>
+  <p class="lead">Шесть вещей, которые делают речь «американской». Каждую услышишь в тексте.</p>
+  <div class="sgrid">
+    <div class="sc"><div class="em">🔊</div><h4>Flap T</h4><p>Между гласными <b>t</b> звучит как быстрое <b>d</b>.</p><p><span class="chip">a lot of → uh LAH-duh</span><span class="chip">treatable</span><span class="chip">genetics</span><span class="chip">personality</span><span class="chip">notice</span></p></div>
+    <div class="sc"><div class="em">🤫</div><h4>T исчезает</h4><p>После <b>n</b> и перед согласной t часто пропадает.</p><p><span class="chip">twenties → TWEN-eez</span><span class="chip">most people → mos people</span><span class="chip">first step</span><span class="chip">don't know</span><span class="chip">often</span></p></div>
+    <div class="sc"><div class="em">🔗</div><h4>Linking</h4><p>Согласный в конце слова «переезжает» к гласному в начале следующего.</p><p><span class="chip">stress and → stress‿n</span><span class="chip">lack of → lack‿uv</span><span class="chip">trigger an → trigger‿un</span><span class="chip">go through</span></p></div>
+    <div class="sc"><div class="em">💨</div><h4>Слабые слова</h4><p>Служебные слова сжимаются до «uh», «n», «tuh».</p><p><span class="chip">of → uv</span><span class="chip">and → 'n</span><span class="chip">to → tuh</span><span class="chip">can → kn</span><span class="chip">a → uh</span></p></div>
+    <div class="sc"><div class="em">🌀</div><h4>R-звук</h4><p>Американское <b>r</b> не раскатывают: язык приподнят и слегка «закручен», гласный окрашивается.</p><p><span class="chip">disorder</span><span class="chip">normal</span><span class="chip">world's</span><span class="chip">therapy</span><span class="chip">personality</span></p></div>
+    <div class="sc"><div class="em">🎼</div><h4>Ритм и интонация</h4><p>Ударные слова (смысл) звучат ярко, слабые — «проглатываются». Утверждение падает ↘; в перечислении: ↗ ↗ ↘.</p><p><span class="chip">exhausted ↗ hopeless ↗ and unable ↘</span></p></div>
+  </div>
+</section>
+
+<section class="part" id="shadow">
+  <div class="ptag">Step 4 · Shadowing</div>
+  <h2>Repeat after the speaker</h2>
+  <p class="lead">Shadowing = ты говоришь почти одновременно с диктором или сразу после него, копируя ритм, ударения и интонацию.</p>
+  <div class="steps">
+    <div><b>1</b>Listen once, read the text and the respelling.</div>
+    <div><b>2</b>Play slowly (0.75×) and repeat each phrase.</div>
+    <div><b>3</b>Press Shadow: speaker, then your turn.</div>
+    <div><b>4</b>Record yourself and compare.</div>
+  </div>
+  <div class="bar">
+    <button class="btn" id="autoBtn">🎯 Auto-shadow the whole text</button>
+    <span class="hint" style="margin:0">Each sentence plays, then there is a pause for you to repeat.</span>
+  </div>
+  <div class="note"><b>Как читать «respelling»:</b> ЗАГЛАВНЫЕ — ударные слоги, <b>‿</b> — слитно, «uh / n / tuh» — слабые формы. Это приблизительная запись на английских слогах, а не точная транскрипция.</div>
+  <div id="shList"></div>
+</section>
+
+<section class="part" id="practice">
+  <div class="ptag">Step 5 · Practice</div>
+  <h2>Check what you know</h2>
+  <div id="practiceBox"></div>
+</section>
+
+<section class="part" id="use">
+  <div class="ptag">Step 6 · Use it</div>
+  <h2>Make the language yours</h2>
+  <p class="lead">Чтобы фразы из текста «закрепились», нужно использовать их самой — письменно и вслух.</p>
+  <div id="useBox"></div>
+</section>
+</main>
+<footer>Between Two Poles · read, listen, shadow · repeat on day 1, 3 and 7 🌿</footer>
+
+<script>
+const DATA = {
+"paras": [["s1","s2","s3"],["s4","s5","s6","s7"],["s8","s9","s10","s11"],["s12","s13","s14","s15"]],
+"sents": [
+ {"id":"s1","t":"Most people have good days and bad days.","say":"Most PEOple have good DAYS‿n BAD days.","note":"Linking: «days and» → «days‿n». Союз and почти всегда слабый: /ən/ или просто «n». Сильные слова: PEOple, GOOD, DAYS, BAD, DAYS."},
+ {"id":"s2","t":"For someone with bipolar disorder, though, moods can [[swing|swing]] far beyond what's normal.","say":"For SOMEone with bi-POlar dis-ORder, THOUGH, MOODS kn SWING far be-YOND wuts NORmul.","note":"bipolar — ударение на PO: /baɪˈpoʊlɚ/. Слово can в утверждении слабое: «kn». What's normal: /wʌts ˈnɔrml/, звук r «закручивается» во рту (r-colored vowel)."},
+ {"id":"s3","t":"The condition affects about one percent of the world's population, and it usually starts in the late teens or early twenties.","say":"The kun-DI-shun uh-FECTS uh-BOUT one per-CEN‿uv the WORLDZ pop-yuh-LAY-shun, 'n it YOU-zhu-lee STARTS in the late TEENS or ER-lee TWEN-eez.","note":"«percent of» → «percen‿uv» (t почти пропадает, of слабое). twenties → «TWEN-eez»: после n звук t часто исчезает (как в «winter» → «winner»). Начало «The» перед согласной: /ðə/."},
+ {"id":"s4","t":"People with bipolar disorder go through two very different states.","say":"PEOple with bi-POlar dis-ORder go THRU two VERy DIFF-rent STATES.","note":"different в американском чаще из двух слогов: «DIFF-rent». go through — «go‿thru» слитно. Падающая интонация в конце: states ↘."},
+ {"id":"s5","t":"During a [[manic|manic]] [[episode|episode]], they may feel unusually [[energetic|energetic]], sleep only a few hours, talk very fast, and make [[risky|risky]] decisions, such as spending a lot of money.","say":"DURing uh MAN-ik EP-i-sode, they may FEEL un-YOU-zhu-ul-ee en-er-JEH-dik, SLEEP ONly uh few HOURS, TALK very FAST, 'n MAKE RIS-ky di-CI-zhunz, such‿az SPEN-ding uh LAH-duh MON-ee.","note":"Flap T: «a lot of» → «uh LAH-duh» (t между гласными звучит как быстрое d). Перечисление: на каждом пункте интонация чуть вверх ↗, на последнем — вниз ↘. energetic: /ˌɛnɚˈdʒɛtɪk/."},
+ {"id":"s6","t":"During a [[depressive|depressive]] [[episode|episode]], the opposite happens: they feel [[exhausted|exhausted]], [[hopeless|hopeless]], and [[unable|unable]] to enjoy anything.","say":"DURing uh de-PRES-iv EP-i-sode, the AH-puh-zit HAP-unz: they FEEL ig-ZAW-stid, HOPE-less, 'n un-A-bul tuh en-JOY EN-ee-thing.","note":"to перед глаголом слабое: «unable tuh enjoy». opposite: /ˈɑpəzɪt/ — три слога, «oppo-zit». exhausted: /ɪɡˈzɔstɪd/, ударение на втором слоге."},
+ {"id":"s7","t":"Between these [[episodes|episode]], many people feel completely like themselves.","say":"be-TWEEN theez EP-i-sodes, MEN-ee PEOple FEEL cum-PLEET-lee LIKE them-SELVZ.","note":"Ритм английского: сильные слова (TWEEN, EP-i-sodes, MEN-ee, PEOple, FEEL, PLEET, LIKE, SELVZ) идут примерно через равные промежутки, а слабые между ними «сжимаются»."},
+ {"id":"s8","t":"Doctors still don't know the [[exact|exact]] cause.","say":"DOC-terz STILL doh-NOH the ig-ZAK CAUSE.","note":"«don't know» → «doh-NOH»: t исчезает или заменяется паузой (glottal stop). exact cause: t в конце exact почти не слышен, «ig-ZAK cause»."},
+ {"id":"s9","t":"Genetics seems to play a big role, but stress and lack of sleep can also [[trigger|trigger]] an episode.","say":"juh-NEH-dicks SEEMZ tuh PLAY uh BIG ROLE, but STRESS‿n LACK‿uv SLEEP kn AL-so TRI-gur‿un EP-i-sode.","note":"Flap T в genetics: «juh-NEH-dicks» (t как d). Слитно: stress‿and → «stress‿n», lack‿of → «lack‿uv», trigger‿an → «trigger‿un»."},
+ {"id":"s10","t":"The good news is that the disorder is [[treatable|treatable]].","say":"The GOOD NEWS iz that the dis-ORder iz TREE-duh-bul.","note":"treatable: flap T → «TREE-duh-bul». Слитно: news‿is → «news‿iz». Подчёркнутое GOOD NEWS — главная мысль фразы."},
+ {"id":"s11","t":"A combination of medication, therapy, and a [[steady|steady]] daily routine helps most people stay [[stable|stable]] and live full lives.","say":"Uh kom-bi-NAY-shun uv med-i-KAY-shun, THER-uh-pee, 'n uh STEH-dee DAY-lee roo-TEEN HELPS mos PEOple STAY STAY-bul 'n LIVE FULL LIVES.","note":"combination и medication: ударение на -NA- и -KA- (слог перед -tion). «most people» → «mos people» (t выпадает между согласными). therapy: /ˈθɛrəpi/, th — язык между зубами."},
+ {"id":"s12","t":"Sadly, there's still a lot of [[stigma|stigma]].","say":"SAD-lee, there's STILL uh LAH-duh STIG-muh.","note":"«a lot of» → «uh LAH-duh» (flap T, как в s5). stigma: ударение на первый слог /ˈstɪɡmə/."},
+ {"id":"s13","t":"People often use the word “bipolar” as a joke about someone who's [[moody|moody]], which misses the point.","say":"PEOple AWF-un USE the WORD 'bi-POlar' az uh JOKE uh-BOUT SOMEone who's MOO-dee, which MIS-iz the POINT.","note":"often: t не произносится — «AWF-un». use (глагол) /juz/, а существительное use /jus/. word‿bipolar — слитно. misses → «MIS-iz»."},
+ {"id":"s14","t":"Real bipolar disorder isn't a personality [[quirk|quirk]]; it's a medical condition that [[deserves|deserve]] understanding, not [[judgment|judgment]].","say":"REAL bi-POlar dis-ORder IZ-unt uh per-suh-NAL-uh-dee QUIRK; it's uh MED-i-kul kun-DI-shun that dih-ZERVZ un-der-STAN-ding, NOT JUDGE-munt.","note":"isn't a → «IZ-unt uh» (n и t сливаются). personality: flap T → «per-suh-NAL-uh-dee», ударение на NAL. Контраст NOT JUDGEment выделяется сильнее всего."},
+ {"id":"s15","t":"If you notice these signs in yourself or someone close to you, talking to a professional is a good first step.","say":"If-yuh NO-dis theez SIGNS in yur-SELF or SOMEone CLOSE tuh you, TAWK-in tuh uh pruh-FESH-nul iz uh GOOD FIRS STEP.","note":"«if you» → «if-yuh», notice: flap T → «NO-dis» (/ˈnoʊɾɪs/). talking to a → «TAWK-in tuh uh». «first step» → «firs step» (t выпадает). В конце — падающая интонация: step ↘."}
+],
+"vocab": [
+ {"w":"swing","ru":"колебаться, резко меняться","d":"to change quickly from one extreme to another","e":"Her mood can swing from happy to angry in minutes."},
+ {"w":"manic","ru":"маниакальный","d":"extremely excited and full of energy, often in an uncontrolled way","e":"He was in a manic state and didn't sleep for three days."},
+ {"w":"episode","ru":"эпизод, приступ","d":"a period of time when a condition is active","e":"Each episode can last for weeks."},
+ {"w":"energetic","ru":"энергичный","d":"full of energy; active","e":"She felt unusually energetic that morning."},
+ {"w":"risky","ru":"рискованный","d":"involving a chance of danger or loss","e":"Quitting your job without a plan is risky."},
+ {"w":"depressive","ru":"депрессивный","d":"connected with deep sadness and loss of interest","e":"A depressive episode can make everyday tasks feel impossible."},
+ {"w":"exhausted","ru":"измотанный","d":"extremely tired","e":"I was exhausted after the long flight."},
+ {"w":"hopeless","ru":"безнадёжный","d":"feeling that nothing will get better","e":"He felt hopeless, but therapy helped."},
+ {"w":"unable","ru":"неспособный","d":"not able to do something","e":"She was unable to concentrate."},
+ {"w":"exact","ru":"точный","d":"completely correct in every detail","e":"What's the exact time?"},
+ {"w":"trigger","ru":"запускать, провоцировать","d":"to make something start or happen","e":"Lack of sleep can trigger a bad day."},
+ {"w":"treatable","ru":"поддающийся лечению","d":"able to be improved or managed with medical care","e":"Many conditions are treatable if you get help early."},
+ {"w":"steady","ru":"ровный, постоянный","d":"regular and not changing much","e":"A steady routine helps me feel calm."},
+ {"w":"stable","ru":"стабильный","d":"not likely to change suddenly","e":"His mood has been stable for a year."},
+ {"w":"stigma","ru":"стигма, предубеждение","d":"unfair negative ideas people have about a group or condition","e":"There is still a stigma around mental health."},
+ {"w":"moody","ru":"переменчивый в настроении","d":"often changing mood, or often in a bad mood","e":"Teenagers are often described as moody."},
+ {"w":"quirk","ru":"причуда, странность","d":"a small unusual habit or feature of a person","e":"Talking to plants is just one of her quirks."},
+ {"w":"deserve","ru":"заслуживать","d":"to have earned or to be worthy of something","e":"Everyone deserves respect."},
+ {"w":"judgment","ru":"осуждение; суждение","d":"an opinion, often a negative one, about someone","e":"Try to listen without judgment."}
+]
+}
+;
+</script>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+let S = {}; try { S = JSON.parse(localStorage.getItem('bipolar-text-v1') || '{}'); } catch (e) {}
+const save = () => { try { localStorage.setItem('bipolar-text-v1', JSON.stringify(S)); } catch (e) {} };
+let TOTAL = 0;
+const refresh = () => { const d = Object.values(S).filter(v => v === 1).length; $('#progTxt').textContent = d + ' / ' + TOTAL; $('#progBar').style.width = (TOTAL ? d / TOTAL * 100 : 0) + '%'; };
+const setS = (id, v) => { if (v === 1 || S[id] !== 1) S[id] = v; save(); refresh(); };
+function canon(s) {
+  s = String(s).toLowerCase().replace(/[’‘`]/g, "'").replace(/[.,!?;:"“”()]/g, ' ');
+  s = s.replace(/n't\b/g, ' not').replace(/'ve\b/g, ' have').replace(/'re\b/g, ' are').replace(/'ll\b/g, ' will').replace(/'m\b/g, ' am');
+  return s.replace(/\s+/g, ' ').trim();
+}
+const okAns = (v, list) => list.some(a => canon(a) === canon(v));
+
+/* ---------- audio manager ---------- */
+const AU = {}; let PEND = null;
+const audioFor = id => AU[id] || (AU[id] = Object.assign(new Audio('audio/' + id + '.mp3'), { preload: 'auto', preservesPitch: true }));
+const resetBtns = () => document.querySelectorAll('[data-state]').forEach(b => { b.textContent = b.dataset.label; b.classList.remove('on'); });
+function haltAudio() { if (PEND) { const p = PEND; PEND = null; p(false); } Object.values(AU).forEach(a => { a.onended = null; a.pause(); }); document.querySelectorAll('.now').forEach(x => x.classList.remove('now')); }
+function stopAll() { haltAudio(); document.querySelectorAll('.turn').forEach(x => x.classList.remove('show')); resetBtns(); }
+function playOnce(id, rate = 1, mark) {
+  return new Promise(res => {
+    haltAudio();
+    const a = audioFor(id); a.currentTime = 0; a.playbackRate = rate;
+    if (mark) mark.classList.add('now');
+    PEND = res;
+    a.onended = () => { PEND = null; if (mark) mark.classList.remove('now'); res(true); };
+    a.play().catch(() => { PEND = null; res(false); });
+  });
+}
+async function waitOn(ms, btn) { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (btn && !btn.classList.contains('on')) return false; await new Promise(r => setTimeout(r, 100)); } return true; }
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const sentEls = {}; // id -> [elements to highlight]
+
+/* ---------- reading ---------- */
+const VOC = Object.fromEntries(DATA.vocab.map(v => [v.w, v]));
+const sById = Object.fromEntries(DATA.sents.map(s => [s.id, s]));
+const htmlOf = t => esc(t).replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, (m, shown, key) => `<span class="vw" data-k="${key}">${shown}</span>`);
+const textBox = $('#text');
+DATA.paras.forEach(p => {
+  const pe = el('p');
+  p.forEach(id => { const sp = el('span', 'snt', htmlOf(sById[id].t) + ' '); sp.dataset.id = id; pe.append(sp); (sentEls[id] = sentEls[id] || []).push(sp); });
+  textBox.append(pe);
+});
+textBox.addEventListener('click', e => {
+  const vw = e.target.closest('.vw');
+  if (vw) { const v = VOC[vw.dataset.k]; $('#gloss').innerHTML = `<b>${v.w}</b> · <span style="color:var(--rose);font-weight:800">${v.ru}</span><br>${esc(v.d)}<br><i>${esc(v.e)}</i>`; e.stopPropagation(); return; }
+  const sn = e.target.closest('.snt'); if (sn) { stopAll(); playOnce(sn.dataset.id, 1, sn); }
+});
+let fullRate = 1;
+$('#fullSpd').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; fullRate = +b.dataset.r; document.querySelectorAll('#fullSpd .btn').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.classList.toggle('ghost', !on); }); AU.full && (AU.full.playbackRate = fullRate); });
+$('#fullBtn').dataset.label = '▶ Play full text'; $('#fullBtn').dataset.state = 1;
+$('#fullBtn').onclick = () => { const a = audioFor('full'); if (!a.paused) { stopAll(); return; } stopAll(); a.playbackRate = fullRate; a.currentTime = a.currentTime > 0 && a.currentTime < (a.duration || 0) - 0.3 ? a.currentTime : 0; a.onended = () => { stopAll(); }; a.ontimeupdate = () => { $('#fullTime').textContent = Math.floor(a.currentTime) + ' / ' + Math.floor(a.duration || 0) + ' s'; }; a.play(); $('#fullBtn').textContent = '❚❚ Pause'; $('#fullBtn').classList.add('on'); };
+
+/* ---------- vocab ---------- */
+const sentOfWord = w => DATA.sents.find(s => new RegExp('\\|' + w + '\\]\\]').test(s.t));
+DATA.vocab.forEach(v => {
+  const c = el('div', 'vcard', `<h4>${v.w}</h4><div class="ru">${v.ru}</div><p>${esc(v.d)}</p><p><i>${esc(v.e)}</i></p>`);
+  const s = sentOfWord(v.w); if (s) { c.style.cursor = 'pointer'; c.title = 'Hear the sentence from the text'; c.onclick = () => { stopAll(); playOnce(s.id, 1, c); }; c.addEventListener('click', () => { c.style.borderColor = 'var(--lav)'; }); }
+  $('#vgrid').append(c);
+});
+
+/* ---------- recorder ---------- */
+function makeRecorder(box) {
+  const rec = el('button', 'btn rec small', '⏺ Record'); const out = el('div', 'yours'); const msg = el('span', 'msg');
+  let mr = null, chunks = [], stream = null;
+  rec.onclick = async () => {
+    if (mr && mr.state === 'recording') { mr.stop(); return; }
+    try {
+      stopAll(); stream = await navigator.mediaDevices.getUserMedia({ audio: true }); chunks = []; mr = new MediaRecorder(stream);
+      mr.ondataavailable = e => chunks.push(e.data);
+      mr.onstop = () => { stream.getTracks().forEach(t => t.stop()); const url = URL.createObjectURL(new Blob(chunks, { type: mr.mimeType })); out.innerHTML = ''; const au = el('audio'); au.controls = true; au.src = url; out.append(el('span', 'hint', 'Your voice:'), au); out.classList.add('show'); rec.textContent = '⏺ Record again'; rec.classList.remove('on'); out._au = au; };
+      mr.start(); rec.textContent = '⏹ Stop'; rec.classList.add('on'); msg.textContent = '';
+    } catch (e) { msg.textContent = 'Microphone is not available. Open this page from the website link (https) and allow the microphone.'; }
+  };
+  box.append(rec, out, msg); return { out };
+}
+
+/* ---------- shadowing studio ---------- */
+const shList = $('#shList');
+const stressHtml = t => esc(t).replace(/([A-Z]{2,}[A-Za-z]*)/g, '<b>$1</b>');
+DATA.sents.forEach((s, i) => {
+  const card = el('div', 'sh'); card.dataset.id = s.id;
+  const plain = s.t.replace(/\[\[([^|\]]+)\|[^\]]+\]\]/g, '$1');
+  card.innerHTML = `<div class="n">SENTENCE ${i + 1} / ${DATA.sents.length}</div><div class="t">${esc(plain)}</div><div class="say">${stressHtml(s.say)}</div><div class="nt">${esc(s.note)}</div>`;
+  const row = el('div', 'row');
+  const b1 = el('button', 'btn small', '▶ Normal'); b1.onclick = () => { stopAll(); playOnce(s.id, 1, card); };
+  const b2 = el('button', 'btn ghost small', '🐢 Slow'); b2.onclick = () => { stopAll(); playOnce(s.id, 0.75, card); };
+  const b3 = el('button', 'btn ghost small', '🔁 Loop'); b3.dataset.state = 1; b3.dataset.label = '🔁 Loop';
+  b3.onclick = async () => { if (b3.classList.contains('on')) { stopAll(); return; } stopAll(); b3.classList.add('on'); b3.textContent = '⏹ Stop loop'; while (b3.classList.contains('on')) { const ok = await playOnce(s.id, 1, card); if (!ok) break; if (!(await waitOn(500, b3))) break; } if (b3.classList.contains('on')) { b3.classList.remove('on'); b3.textContent = b3.dataset.label; } };
+  const turn = el('span', 'turn', '🎙️ Your turn…');
+  const b4 = el('button', 'btn ghost small', '🎯 Shadow'); b4.onclick = async () => { stopAll(); const a = audioFor(s.id); const ok = await playOnce(s.id, 1, card); if (!ok) return; turn.classList.add('show'); await new Promise(r => setTimeout(r, (a.duration || 3) * 1000 + 700)); turn.classList.remove('show'); };
+  row.append(b1, b2, b3, b4, turn);
+  const rrow = el('div', 'row'); const R = makeRecorder(rrow);
+  const cmp = el('button', 'btn ghost small', '⇄ Compare'); cmp.onclick = async () => { const mine = R.out._au; if (!mine) return; stopAll(); const ok = await playOnce(s.id, 1, card); if (ok) { mine.currentTime = 0; mine.play(); } };
+  rrow.insertBefore(cmp, rrow.children[1]);
+  card.append(row, rrow); shList.append(card);
+});
+$('#autoBtn').dataset.label = '🎯 Auto-shadow the whole text'; $('#autoBtn').dataset.state = 1;
+$('#autoBtn').onclick = async () => {
+  const b = $('#autoBtn'); if (b.classList.contains('on')) { stopAll(); return; }
+  stopAll(); b.classList.add('on'); b.textContent = '⏹ Stop';
+  for (const s of DATA.sents) {
+    if (!b.classList.contains('on')) return;
+    const card = document.querySelector(`.sh[data-id="${s.id}"]`); card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    const ok = await playOnce(s.id, 1, card); if (!ok || !b.classList.contains('on')) break;
+    const t = card.querySelector('.turn'); t.classList.add('show'); const cont = await waitOn((audioFor(s.id).duration || 3) * 1000 + 700, b); t.classList.remove('show'); if (!cont) break;
+  }
+  if (b.classList.contains('on')) stopAll(); else resetBtns();
+};
+
+/* ---------- practice items ---------- */
+const mc = (q, o, a, why) => ({ t: 'mc', q, o, a, why });
+const gap = (q, a, why) => ({ t: 'gap', q, a: a.map(x => Array.isArray(x) ? x : [x]), why });
+const cloze = (q, a) => ({ t: 'cloze', q, a: a.map(x => Array.isArray(x) ? x : [x]) });
+const wr = (q, hint, sample, checks) => ({ t: 'wr', q, hint, sample, checks });
+const LBL = { mc: 'Multiple choice', gap: 'Gap-fill', cloze: 'Recall the text', wr: 'Writing' };
+function buildItem(id, it, n) {
+  const box = el('div', 'item'); box.id = id; TOTAL++;
+  const top = el('div', 'itop', `<span class="num">${n}</span><span class="type">${LBL[it.t]}</span><span class="mark"></span>`); box.append(top);
+  const mark = $('.mark', top), fb = el('div', 'fb'), btns = el('div', 'btns');
+  const setMark = ok => { box.classList.remove('ok', 'no'); box.classList.add(ok ? 'ok' : 'no'); mark.textContent = ok ? '✓' : '✕'; mark.style.color = ok ? 'var(--ok)' : 'var(--bad)'; };
+  const show = (c, h) => { fb.className = 'fb show ' + c; fb.innerHTML = h; };
+  let check = () => {};
+  const ansText = () => it.t === 'mc' ? it.o[it.a] : it.a.map(x => x[0]).join(' · ');
+  if (it.t === 'mc') {
+    box.append(el('div', 'q', esc(it.q).replace(/___/g, '<span class="blank"></span>')));
+    const opts = el('div', 'opts'); let sel = -1;
+    it.o.forEach((o, i) => { const b = el('button', 'opt', `<b>${'ABCD'[i]}</b>${esc(o)}`); b.onclick = () => { sel = i; opts.querySelectorAll('.opt').forEach(x => x.classList.remove('sel', 'wrong')); b.classList.add('sel'); }; opts.append(b); });
+    box.append(opts);
+    check = () => { if (sel < 0) return; const r = sel === it.a; opts.querySelectorAll('.opt').forEach((x, i) => { x.classList.remove('sel'); if (i === sel) x.classList.add(r ? 'right' : 'wrong'); }); setMark(r); setS(id, r ? 1 : -1); show(r ? 'good' : 'bad', r ? '<b>Correct.</b> ' + esc(it.why || '') : '<b>Not quite.</b> Try again or press Show answer.'); };
+    box._rev = () => opts.querySelectorAll('.opt').forEach((x, i) => x.classList.toggle('right', i === it.a));
+  } else if (it.t === 'gap' || it.t === 'cloze') {
+    const q = el('div', 'q'); let g = 0; q.style.lineHeight = it.t === 'cloze' ? '2.1' : '';
+    q.innerHTML = esc(it.q).replace(/___/g, () => `<input class="gap" data-i="${g++}" autocomplete="off" spellcheck="false">`); box.append(q);
+    const inputs = [...q.querySelectorAll('input')]; inputs.forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') check(); }));
+    check = () => { if (it.t === 'gap' && inputs.some(i => !i.value.trim())) return; let c = 0; inputs.forEach((inp, i) => { const r = okAns(inp.value, it.a[i]); inp.classList.remove('right', 'wrong'); if (inp.value.trim()) inp.classList.add(r ? 'right' : 'wrong'); if (r) c++; });
+      const pass = it.t === 'gap' ? c === inputs.length : c >= Math.ceil(inputs.length * .8); setMark(pass); setS(id, pass ? 1 : -1);
+      show(pass ? 'good' : 'bad', it.t === 'cloze' ? `<b>${c} / ${inputs.length}</b> ${pass ? 'Great recall!' : 'Fix the red gaps and check again.'}` : (pass ? '<b>Correct.</b> ' + esc(it.why || '') : '<b>Not quite.</b> Check the highlighted gap.')); };
+    box._rev = () => inputs.forEach((inp, i) => { inp.value = it.a[i][0]; inp.classList.add('right'); });
+  } else if (it.t === 'wr') {
+    box.append(el('div', 'q', esc(it.q)), el('div', 'hint', '<b>Start / hint:</b> ' + esc(it.hint)));
+    const ta = el('textarea', 'free'); ta.value = S[id + '_t'] || ''; ta.addEventListener('input', () => { S[id + '_t'] = ta.value; save(); }); box.append(ta);
+    box.append(el('ul', 'checklist', it.checks.map(c => '<li>' + esc(c) + '</li>').join('')));
+    const self = el('div', 'self', '<button>✅</button><button>❌</button>'); const [y, nn] = self.querySelectorAll('button');
+    y.onclick = () => { y.classList.add('on'); nn.classList.remove('on'); setMark(true); setS(id, 1); }; nn.onclick = () => { nn.classList.add('on'); y.classList.remove('on'); setMark(false); setS(id, -1); };
+    top.insertBefore(self, mark); if (S[id] === 1) { y.classList.add('on'); setMark(true); } else if (S[id] === -1) { nn.classList.add('on'); setMark(false); }
+    const sh = el('button', 'btn ghost small', 'Show model answer'); sh.onclick = () => show('ans', '<b>Model:</b><br>' + esc(it.sample).replace(/\n/g, '<br>'));
+    btns.append(sh); box.append(btns, fb); return box;
+  }
+  const cb = el('button', 'btn small', 'Check'); cb.onclick = () => check();
+  const sb = el('button', 'btn ghost small', 'Show answer'); sb.onclick = () => { box._rev && box._rev(); if (S[id] !== 1) { S[id] = -1; save(); refresh(); } show('ans', '<b>Answer:</b> ' + esc(ansText()) + (it.why ? '<br>' + esc(it.why) : '')); };
+  btns.append(cb, sb); box.append(btns, fb); if (S[id] === 1) setMark(true);
+  return box;
+}
+function group(parent, key, title, lead, items) {
+  parent.append(el('h3', 'sub', title), el('p', 'lead', lead));
+  items.forEach((it, i) => parent.append(buildItem(`${key}_${i}`, it, i + 1)));
+}
+const P = $('#practiceBox');
+group(P, 'c', 'A · Comprehension', 'Choose the best answer. Answers come from the text.', [
+ mc('About how many people in the world have bipolar disorder?', ['About 1%', 'About 10%', 'About 25%', 'About 0.1%'], 0, 'Текст: «about one percent of the world’s population».'),
+ mc('When does the condition usually start?', ['In childhood', 'In the late teens or early twenties', 'After the age of 50', 'At any age equally'], 1, '«it usually starts in the late teens or early twenties».'),
+ mc('Which is typical of a manic episode?', ['Sleeping a lot and feeling hopeless', 'Little sleep, fast talking, risky decisions', 'Feeling calm and stable', 'Losing interest in everything'], 1, 'Manic = много энергии, мало сна, быстрая речь, рискованные решения. Усталость и безнадёжность — это depressive.'),
+ mc('What can trigger an episode?', ['Only genetics', 'Only medication', 'Stress and lack of sleep', 'Nothing at all'], 2, 'Генетика играет роль, но «stress and lack of sleep can also trigger an episode».'),
+ mc('What helps most people stay stable?', ['Medication, therapy and a steady routine', 'Avoiding all people', 'Working more hours', 'Waiting for the episode to pass'], 0, '«A combination of medication, therapy, and a steady daily routine».'),
+ mc('What is the author’s main message at the end?', ['Bipolar disorder is a joke', 'It is a personality quirk', 'It is a medical condition that deserves understanding', 'It cannot be treated'], 2, 'Последний абзац: «a medical condition that deserves understanding, not judgment».'),
+]);
+group(P, 'v', 'B · Vocabulary', 'Which word matches the definition?', [
+ mc('a period of time when a condition is active', ['episode', 'stigma', 'quirk', 'routine'], 0, 'episode = приступ, эпизод.'),
+ mc('to make something start or happen', ['deserve', 'trigger', 'swing', 'judge'], 1, 'trigger = запускать, провоцировать.'),
+ mc('unfair negative ideas people have about a group', ['stigma', 'routine', 'episode', 'quirk'], 0, 'stigma = стигма, предубеждение.'),
+ mc('not likely to change suddenly', ['risky', 'manic', 'stable', 'moody'], 2, 'stable = стабильный.'),
+ mc('able to be improved or managed with medical care', ['hopeless', 'treatable', 'exhausted', 'energetic'], 1, 'treatable = поддаётся лечению.'),
+ mc('involving a chance of danger or loss', ['steady', 'risky', 'exact', 'unable'], 1, 'risky = рискованный.'),
+ mc('to be worthy of something', ['trigger', 'swing', 'deserve', 'stigma'], 2, 'deserve = заслуживать.'),
+ mc('a small unusual habit of a person', ['quirk', 'episode', 'judgment', 'stigma'], 0, 'quirk = причуда.'),
+]);
+group(P, 'k', 'C · Collocations from the text', 'Complete with the verb from the text.', [
+ gap('Genetics seems to ___ a big role.', [['play']], 'play a role = играть роль.'),
+ gap('They ___ through two very different states.', [['go']], 'go through = переживать.'),
+ gap('Stress and lack of sleep can ___ an episode.', [['trigger']], 'trigger an episode.'),
+ gap('They may ___ risky decisions.', [['make']], 'make decisions (не do!).'),
+ gap('Treatment helps most people ___ stable.', [['stay', 'remain']], 'stay stable = оставаться стабильным.'),
+ gap('Many people ___ full lives with the right support.', [['live', 'lead']], 'live / lead a full life.'),
+]);
+group(P, 'p', 'D · American pronunciation', 'How do Americans most naturally say it?', [
+ mc('“a lot of” in “a lot of money”', ['a LOCK of', 'uh LAH-duh', 'a LOT off', 'a LOT-of (every sound clear)'], 1, 'Flap T: t между гласными → быстрое d: «uh LAH-duh».'),
+ mc('“treatable”', ['TREE-tuh-bul (hard t)', 'TREE-duh-bul', 'tray-TAY-bul', 'TREAT-able (two words)'], 1, 'Flap T: «TREE-duh-bul».'),
+ mc('“twenties”', ['TWEN-tees (clear t)', 'TWEN-eez', 'TWEE-nees', 'TWENT-ties'], 1, 'После n t часто исчезает: «TWEN-eez».'),
+ mc('“stress and lack of sleep”', ['stress AND lack OF sleep (strong)', 'stress‿n lack‿uv sleep', 'stressand lackof sleep (no stress)', 'stress end lack off sleep'], 1, 'and и of слабые: «n» и «uv», плюс слитно с предыдущим словом.'),
+ mc('In a statement, the weak word “can” in “moods can swing” sounds like…', ['kan (strong, loud)', 'kn (weak)', 'cane', 'kon'], 1, 'Can в утверждении слабое: «kn». Сильное «kan» — в конце фразы или в ответе «Yes, I can».'),
+ mc('Typical intonation at the end of a statement:', ['rising ↗', 'falling ↘', 'flat and high', 'zig-zag'], 1, 'Утверждения заканчиваются падением: «…different states ↘».'),
+]);
+P.append(el('h3', 'sub', 'E · Recall the text'), el('p', 'lead', 'Without looking, fill the gaps from memory (hint: the key words come from the vocabulary).'));
+[
+ cloze('During a manic episode, they may feel unusually ___, sleep only a few hours, talk very ___, and make ___ decisions. During a depressive episode, the ___ happens: they feel exhausted, hopeless, and ___ to enjoy anything.', ['energetic', 'fast', 'risky', 'opposite', 'unable']),
+ cloze('Doctors still don’t know the exact ___. Genetics seems to ___ a big role, but stress and lack of sleep can also ___ an episode. A combination of medication, therapy, and a steady daily ___ helps most people stay ___ and live full lives.', ['cause', 'play', 'trigger', 'routine', 'stable']),
+].forEach((it, i) => P.append(buildItem('r_' + i, it, i + 1)));
+
+const U = $('#useBox');
+group(U, 'w', 'Write', 'Compare with the model, then mark yourself ✅ or ❌ honestly.', [
+ wr('Write 3 sentences using “play a big role”, “trigger” and “stay stable”.', 'Sleep plays a big role in…', 'Sleep plays a big role in how I feel during the day.\nStress at work can trigger a really bad week for me.\nA regular routine helps me stay stable and focused.', ['All 3 phrases used', 'Correct verb forms (plays / can trigger / stay)', 'Your own real idea, not copied']),
+ wr('Explain in 3–4 sentences why using “bipolar” as a joke is harmful. Use “stigma” and “deserve”.', 'Calling someone “bipolar” as a joke is harmful because…', 'Calling someone “bipolar” as a joke is harmful because it ignores a real medical condition. It adds to the stigma and makes people afraid to ask for help. Everyone deserves understanding, not judgment.', ['“stigma” and “deserve(s)” used', 'Clear reason + result', 'Polite, respectful tone']),
+ wr('Summarise the text in about 50 words, in your own words.', 'Bipolar disorder is a condition in which…', 'Bipolar disorder causes extreme mood swings between manic and depressive episodes. It usually starts in young adulthood. The exact cause is unknown, but genetics and stress matter. With medication, therapy and routine, most people stay stable. Sadly, stigma remains, so understanding is important.', ['About 40–60 words', 'Main ideas only: what it is, symptoms, treatment, stigma', 'Different words from the original']),
+]);
+U.append(el('h3', 'sub', 'Speak'), el('p', 'lead', 'Retell the text out loud in 40–60 seconds using these key words in this order. Record yourself, then listen: is it smooth?'));
+U.append(el('div', 'kwc', ['mood swings', 'manic episode', 'depressive episode', 'trigger', 'treatable', 'stable', 'stigma', 'deserves understanding'].map(k => `<span>${k}</span>`).join('')));
+const spk = el('div', 'card'); makeRecorder(spk); U.append(spk);
+U.append(el('div', 'note', '<b>Повторяй через 1, 3 и 7 дней:</b> в день 1 — слушай и shadowing 2–3 раза; в день 3 — читай и shadowing без текста; в день 7 — перескажи вслух и запиши.'));
+refresh();
+</script>
+</body>
+</html>
